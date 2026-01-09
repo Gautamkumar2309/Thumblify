@@ -11,8 +11,6 @@ export type AspectRatio = (typeof aspectRatios)[number];
 
 
 //
-
-
 export const thumbnailStyles = ["Bold & Graphic", "Minimalist", "Photorealistic", "Illustrated", "Tech/Futuristic"];
 export type ThumbnailStyle = (typeof thumbnailStyles)[number];
 
