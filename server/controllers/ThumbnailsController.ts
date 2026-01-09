@@ -5,6 +5,7 @@ import { GenerateContentConfig, HarmBlockThreshold, HarmCategory } from "@google
 import ai from "../configs/ai.js";
 import path from "path";
 import  fs from "fs";
+import {v2 as cloudinary} from 'cloudinary'
 
 
 
@@ -54,7 +55,7 @@ export const generateThumbnail = async (req: Request, res: Response) =>{
     try{
         const {userId} = req.session;
         const{title,prompt: user_prompt,style,aspect_ratio,color_scheme,text_overlay}=req.body;
-        const thumnail = await Thumbnnail.create({
+        const thumbnail = await Thumbnnail.create({
             userId,
             title,
             prompt_use: user_prompt,
@@ -120,8 +121,17 @@ export const generateThumbnail = async (req: Request, res: Response) =>{
 
         // Writer the final image to the file
         fs.writeFileSync(filePath,finalBuffer!);
+ 
+        
+        const uploadResult = await cloudinary.uploader.upload (filePath,{resource_type:'image'})
+        thumbnail.image_url = uploadResult.url;
+        thumbnail.isGenerating = false;
+        await thumbnail.save()
 
-    }catch(error){
-
+        res.json({message: 'Thumbnail Generated',thumbnail})
+        fs.unlinkSync(filePath)
+    }catch(error:any){
+        console.log(error);
+        res.status(500).json({message:error.message});
     }
 }
