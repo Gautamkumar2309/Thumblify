@@ -33,7 +33,6 @@ export interface ThumbnailRequest {
 }
 
 export interface IThumbnail {
-    _id: string;
     userId: string;
     title: string;
     description?: string;
