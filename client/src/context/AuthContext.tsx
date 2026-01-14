@@ -27,9 +27,28 @@ export const AuthProvider = ({children}: {children: React.ReactNode}) =>{
     const [user, setUser] = useState<IUser | null>(null)
     const[isLoggedIn, setIsLoggedIn] = useState<boolean>(false)
 
+    const signUp = async() => {
+
+    }
+
+    const login = async() => {
+
+    }
+
+    const logout = async() => {
+
+    }
+
+    const fetchUser = async() => {
+
+    }
+
+
     const value = {
         user,setUser,
-        isLoggedIn, setIsLoggedIn
+        isLoggedIn, setIsLoggedIn,
+        signUp,login,logout
+
 
     }
     return(
