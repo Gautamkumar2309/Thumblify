@@ -42,8 +42,17 @@ export const AuthProvider = ({children}: {children: React.ReactNode}) =>{
         }
     }
 
-    const login = async() => {
-
+    const login = async({email,password}: {email: String; password: string}) => {
+        try{
+            const {data} = await api.post('/api/aith/login',{email, password})
+            if(data.user){
+                setUser(data.user as IUser)
+                setIsLoggedIn(true)
+            }
+            toast.success(data.message)
+        }catch (error){
+            console.log(error);
+        }
     }
 
     const logout = async() => {
