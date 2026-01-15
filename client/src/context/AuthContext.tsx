@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import type { IUser } from "../assets/assets";
 
 interface AuthContextProps{
@@ -28,7 +28,7 @@ export const AuthProvider = ({children}: {children: React.ReactNode}) =>{
     const[isLoggedIn, setIsLoggedIn] = useState<boolean>(false)
 
     const signUp = async() => {
-
+        
     }
 
     const login = async() => {
@@ -42,6 +42,12 @@ export const AuthProvider = ({children}: {children: React.ReactNode}) =>{
     const fetchUser = async() => {
 
     }
+
+    useEffect(()=>{
+        (async () =>{
+            await fetchUser();
+        })();
+    },[])
 
 
     const value = {
