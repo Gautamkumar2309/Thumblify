@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import type { IUser } from "../assets/assets";
 import api from "../configs/api";
 import toast from "react-hot-toast";
@@ -98,3 +98,5 @@ export const AuthProvider = ({children}: {children: React.ReactNode}) =>{
         </AuthContext.Provider>
     )
 }
+
+export const useAuth = ()=> useContext(AuthContext);
