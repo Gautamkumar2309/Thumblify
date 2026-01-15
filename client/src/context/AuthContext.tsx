@@ -1,5 +1,7 @@
 import React, { createContext, useEffect, useState } from "react";
 import type { IUser } from "../assets/assets";
+import api from "../configs/api";
+import toast from "react-hot-toast";
 
 interface AuthContextProps{
     isLoggedIn: boolean;
@@ -27,8 +29,17 @@ export const AuthProvider = ({children}: {children: React.ReactNode}) =>{
     const [user, setUser] = useState<IUser | null>(null)
     const[isLoggedIn, setIsLoggedIn] = useState<boolean>(false)
 
-    const signUp = async() => {
-        
+    const signUp = async({name,email,password}: {name: string; email: String; password: string}) => {
+        try{
+            const {data} = await api.post('/api/aith/register',{name, email, password})
+            if(data.user){
+                setUser(data.user as IUser)
+                setIsLoggedIn(true)
+            }
+            toast.success(data.message)
+        }catch (error){
+            console.log(error);
+        }
     }
 
     const login = async() => {
