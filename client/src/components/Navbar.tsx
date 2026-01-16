@@ -35,10 +35,24 @@ export default function Navbar() {
                     <Link to='#' className = "hover:text-pink-300 transition">My Contact us </Link>
 
                 </div>
+                <div className="flex items-center-center gap-2">
+                        {isLoggedIn ? (
+                            <div className="relative group">
+                                <button className="rounded-full size-8 bg-white/20 border-2 border-white/10">
+                                    {user?.name.charAt(0).toUpperCase()}
+                                </button>
+                                <div className="absolute hidden group-hover:block top-6 right-0 pt-4">
 
-                <button onClick={()=> navigate('/login')} className="hidden md:block px-6 py-2.5 bg-pink-600 hover:bg-pink-700 active:scale-95 transition-all rounded-full">
-                    Get Started
-                </button>
+                                </div>
+                            </div>
+                        ): (
+                        <button onClick={()=> navigate('/login')} className="hidden md:block px-6 py-2.5 bg-pink-600 hover:bg-pink-700 active:scale-95 transition-all rounded-full">
+                            Get Started
+                         </button>
+                        )}
+                </div>
+
+                
                 <button onClick={() => setIsOpen(true)} className="md:hidden">
                     <MenuIcon size={26} className="active:scale-90 transition" />
                 </button>
