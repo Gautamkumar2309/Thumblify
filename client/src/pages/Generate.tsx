@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom"
-import { colorSchemes, dummyThumbnails, type AspectRatio, type IThumbnail, type ThumbnailStyle } from "../assets/assets";
+import { colorSchemes,type AspectRatio, type IThumbnail, type ThumbnailStyle } from "../assets/assets";
 import SoftBackdrop from "../components/SoftBackdrop";
 import AspectRatioSelector from "../components/AspecitRatioSelector";
 import StyleSeletor from "../components/StyleSelector";
