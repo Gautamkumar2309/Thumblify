@@ -35,6 +35,8 @@ export interface ThumbnailRequest {
 }
 
 export interface IThumbnail {
+    _id: string;
+   // _id: Key | null | undefined;
     userId: string;
     title: string;
     description?: string;
